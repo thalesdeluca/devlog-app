@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from './configuration/config.module';
-import { UserModule } from './users/user.module';
 import { AppController } from './app.controller';
-const keys = require('config/default');
+import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { MongooseModule } from '@nestjs/mongoose';
+
+const keys = require('./config');
 
 @Module({
   imports: [
-    MongooseModule.forRoot(keys.mongoURI),
-    ConfigModule,
-    UserModule
+    AuthModule,
+    MongooseModule.forRoot(keys.mongoURI)
   ],
-  controllers: [AppController]
+  controllers: [AppController],
+  providers: [AppService],
 })
-
 export class AppModule {}
