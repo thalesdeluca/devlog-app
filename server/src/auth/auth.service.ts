@@ -12,6 +12,7 @@ import { JwtPayload } from './intefaces/jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signup.dto';
 import { PassThrough } from 'stream';
+import { EditUserDto } from './dto/edit-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -69,6 +70,18 @@ export class AuthService {
       email: user.email
     }
     return payload;
+  }
+
+  async editUser(credentials: User, changes: EditUserDto): Promise<any> {
+    return await this.userService.editUser(credentials, changes);
+  }
+
+  async validateEmail(email: string): Promise<any>{
+    return await this.userService.validateEmail(email);
+  }
+
+  async validateName(name: string): Promise<any> {
+    return await this.userService.validateName(name);
   }
 
   async validateUser(payload: JwtPayload){
