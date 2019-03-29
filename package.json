@@ -2,19 +2,26 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.5",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.19",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
-    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-local": "^1.0.0",
     "passport-oauth": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
