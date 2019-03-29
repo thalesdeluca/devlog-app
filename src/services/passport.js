@@ -11,7 +11,7 @@ module.exports = passport => {
   passport.use(new GoogleStrategy({
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: 'http://localhost:3001/auth/google/callback',
+      callbackURL: '/auth/google/callback',
       passReqToCallback: true
     }, async (req, accessToken, refreshToken, profile, done) => {
 
@@ -52,7 +52,7 @@ module.exports = passport => {
   passport.use(new FacebookStrategy({
     clientID: keys.facebookClientID,
     clientSecret: keys.facebookClientSecret,
-    callbackURL: 'http://localhost:3001/auth/facebook/callback',
+    callbackURL: '/auth/facebook/callback',
     passReqToCallback: true,
     profileFields: ['id','emails','name']
 
