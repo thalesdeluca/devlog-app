@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   method: String,
+  profileId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "profile"
+  },
   googleId: Number,
   facebookId: Number
 });

@@ -4,11 +4,15 @@ const keys = require('./config');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+const serverless = require('serverless-http');
 
-app.use(express.json());
+app.use(express.json({
+  limit: '50mb'
+}));
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 require('./models/userModel');
+require('./models/profileModel');
 
 require('./services/passport')(passport);
 
@@ -26,8 +30,9 @@ app.use(session({
 
 
 app.use('/auth', require('./routes/authRoute')(passport));
-app.get('/', (req, res) => {
-  res.send(passport);
-})
+app.use('/profile', require('./routes/profileRoutes')(passport))
+
 
 app.listen(process.env.PORT || 3001);
+
+module.exports.handler = serverless(app);
