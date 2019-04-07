@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const serverless = require('serverless-http');
+const router = express.Router();
 
 app.use(express.json({
   limit: '50mb'
@@ -29,10 +30,12 @@ app.use(session({
 
 
 
-app.use('/auth', require('./routes/authRoute')(passport));
-app.use('/profile', require('./routes/profileRoutes')(passport))
+router.use('/auth', require('./routes/authRoute')(passport));
+router.use('/profile', require('./routes/profileRoutes')(passport))
 
-
+app.use('/.netlify/functions/server', router);
+app.use(router);
 app.listen(process.env.PORT || 3001);
+
 
 module.exports.handler = serverless(app);

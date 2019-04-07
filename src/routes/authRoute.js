@@ -17,7 +17,7 @@ const emailExists = async (email) => {
 }
 
 module.exports = passport => {
-
+  router.use
   router.post("/signup", argsCheck('email', 'password'), async (req, res) => {
     const user = req.body;
     const emailCheck = await emailExists(user.email);
